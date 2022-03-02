@@ -2,7 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import rootReducer from './rootReducer';
 import logger from './middleware/logger';
 
- 
+
 const store = process.env.NODE_ENV === 'production' ? 
 configureStore({
   reducer: rootReducer,
