@@ -1,9 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import tableReducer from './Entities/Table/table'
+import tableDataReducer from './Entities/Table/table'
 
 
 
 export default combineReducers({
-	table: tableReducer,
+	tableData: tableDataReducer,
 
 })

@@ -5,12 +5,10 @@ import axios from 'axios'
 
 
 interface tableThunkProps {
-  dateParams: {
-    dsd: string,
-    ded: string,
-    usd: string,
-    ued: string
-  }
+  defaultStartDate: string
+  defaultEndDate: string
+  userStartDate?: string | null
+  userEndDate?: string | null
 }
 
 interface ThunkAPI {
@@ -27,31 +25,29 @@ export const loadTableData = createAsyncThunk(
     const dispatch = thunkAPI.dispatch
     try {
       const {
-        dsd,
-        ded,
-        usd,
-        ued
-      } = thunkProps.dateParams
+        defaultStartDate,
+        defaultEndDate,
+        userStartDate,
+        userEndDate
+      } = thunkProps
 
       const url = "https://api.nasa.gov/neo/rest/v1/feed"
       const response = await axios.get(url, {
         params: {
           api_key: process.env.REACT_APP_NEOW_KEY,
-          start_date: `${!usd ? dsd : usd}`,
-          end_date: `${!ued ? ded : ued}`
+          start_date: `${!userStartDate ? defaultStartDate : userStartDate}`,
+          end_date: `${!userEndDate ? defaultEndDate : userEndDate}`
         }
       })
       const tableData: any[] = []
       const modifiedResults: any[] = []
       const resultsArray = Object.entries(response.data["near_earth_objects"])
   
-      // console.log(resultsArray)
-      resultsArray.map((result: Array<any>) => {
+      resultsArray.forEach((result: Array<any>) => {
         modifiedResults.push(...result[1])
       })
   
-      // console.log(modifiedResults)
-      modifiedResults.map((result) => {
+      modifiedResults.forEach((result) => {
         tableData.push({
           id: result.id,
           name: result.name,
@@ -64,9 +60,6 @@ export const loadTableData = createAsyncThunk(
           close_approach_date: result.close_approach_data[0].close_approach_date_full
         })
       })
-      console.log(tableData)
-
-
       dispatch(SET_DATA(tableData))
     } catch (error) {
       throw error
