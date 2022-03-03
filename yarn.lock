@@ -2350,6 +2350,18 @@ adjust-sourcemap-loader@^4.0.0:
     loader-utils "^2.0.0"
     regex-parser "^2.2.11"
 
+ag-charts-community@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ag-charts-community/-/ag-charts-community-5.0.0.tgz#fe2653c1df0688ee345d4cdb25d06b3493b12ac2"
+  integrity sha512-G39tAwkX0NEn+EzIG608L5XZxHRzZPQS10yniYNh0IWiifXCF9A/oENYHM3e0R6odky0Idf1wFpio7fDeOuLdg==
+
+ag-charts-react@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ag-charts-react/-/ag-charts-react-5.0.0.tgz#f9017ffc7505aef06679c25a63f1152b92aa64c0"
+  integrity sha512-+O3Gz5+Sm6H1gLGwegwwKQeoPTuAMvG9zHigqpNuJoUw1VhSLystCew5ekGQEDQFgVF/Ux+ZS6l0K4PN0nRzzw==
+  dependencies:
+    prop-types "^15.6.2"
+
 ag-grid-community@^27.0.1:
   version "27.0.1"
   resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-27.0.1.tgz#7ce5c000d321ba2c22447837e793b1d8366f4cdb"
@@ -3235,7 +3247,14 @@ cosmiconfig@^7.0.0, cosmiconfig@^7.0.1:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-cross-spawn@^7.0.2, cross-spawn@^7.0.3:
+cross-env@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-7.0.3.tgz#865264b29677dc015ba8418918965dd232fc54cf"
+  integrity sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
+  dependencies:
+    cross-spawn "^7.0.1"
+
+cross-spawn@^7.0.1, cross-spawn@^7.0.2, cross-spawn@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
   integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
@@ -7172,7 +7191,7 @@ prompts@^2.0.1, prompts@^2.4.2:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
