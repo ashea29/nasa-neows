@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { AppDispatch } from '../../store'
-import { SET_DATA } from './table'
+import { SET_CHARTDATA, SET_DATA } from './table'
 import axios from 'axios'
 
 
@@ -39,11 +39,17 @@ export const loadTableData = createAsyncThunk(
           end_date: `${!userEndDate ? defaultEndDate : userEndDate}`
         }
       })
-      const tableData: any[] = []
+      const tableData: object[] = []
+      const chartData: object[] = []
       const modifiedResults: any[] = []
+      // const resultsKeysArray = Object.keys(response.data[""])
       const resultsArray = Object.entries(response.data["near_earth_objects"])
   
       resultsArray.forEach((result: Array<any>) => {
+        chartData.push({
+          date: result[0],
+          numberOfObjects: result[1].length
+        })
         modifiedResults.push(...result[1])
       })
   
@@ -61,6 +67,7 @@ export const loadTableData = createAsyncThunk(
         })
       })
       dispatch(SET_DATA(tableData))
+      dispatch(SET_CHARTDATA(chartData))
     } catch (error) {
       throw error
     }
