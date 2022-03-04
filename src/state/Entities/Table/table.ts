@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
 import { createSelector } from 'reselect'
-import { loadTableData } from './tableThunks'
+import { loadTableData } from '../../thunks'
 import dayjs from 'dayjs'
 
 
@@ -14,7 +14,6 @@ interface InitialTableState {
     userEndDate?: string | null
   }
   data: object[] | null
-  chartData: object[] | null
 }
 
 const initialState: InitialTableState = {
@@ -25,8 +24,7 @@ const initialState: InitialTableState = {
     userStartDate: null,
     userEndDate: null
   },
-  data: [],
-  chartData: []
+  data: []
 }
 
 const tableDataSlice = createSlice({
@@ -39,11 +37,8 @@ const tableDataSlice = createSlice({
     SET_UED: (state, { payload }) => {
       state.dateParams.userEndDate = payload
     },
-    SET_DATA: (state, { payload }) => {
+    SET_TABLEDATA: (state, { payload }) => {
       state.data = payload
-    },
-    SET_CHARTDATA: (state, { payload }) => {
-      state.chartData = payload
     }
   },
   extraReducers: (builder) => {
@@ -59,7 +54,7 @@ const tableDataSlice = createSlice({
   }
 })
 
-export const { SET_DATA, SET_CHARTDATA, SET_USD, SET_UED } = tableDataSlice.actions
+export const { SET_TABLEDATA, SET_USD, SET_UED } = tableDataSlice.actions
 
 export const selectTableData = createSelector(
   (state: RootState) => state.entities.tableData.data, 
@@ -69,11 +64,6 @@ export const selectTableData = createSelector(
 export const selectTableDataLoading = createSelector(
   (state: RootState) => state.entities.tableData.isLoading,
   (isLoading) => isLoading
-)
-
-export const selectChartData = createSelector(
-  (state: RootState) => state.entities.tableData.chartData, 
-  (data) => data
 )
 
 export const selectDateParams = createSelector(

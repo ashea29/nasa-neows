@@ -18,7 +18,6 @@ export const updateRowHeight = (params: any, minRowHeight: number, currentRowHei
 };
 
 export const autoSizeAllColumns = (params: any) => {
-  console.log(params)
   const allColumnIds: any = [];
   params.columnApi.getAllColumns().forEach((column: any) => {
     allColumnIds.push(column.getId());

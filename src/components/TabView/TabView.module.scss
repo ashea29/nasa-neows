@@ -1,0 +1,49 @@
+.form-container {
+  margin: 3.5rem 0 3rem 0;
+  padding: 1.5rem;
+  background-color: #2a2e31;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: 600px) {
+    & {
+
+      margin-top: 4.5rem;
+    }
+  }
+}
+
+.table-group {
+  transform: translateY(-7%) !important;
+}
+
+.tablist {
+  text-align: center;
+  
+  li {
+    color: #fff;
+    background-color:#333e42;
+    border-radius: 5px;
+
+    &:focus {
+      background-color:#425055;
+    }
+
+    &[aria-selected=true] {
+      border-bottom: 1px solid;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.table-panel,
+.chart-panel {
+  display: flex;
+  justify-content: center;
+}

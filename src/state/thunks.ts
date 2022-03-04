@@ -1,10 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { AppDispatch } from '../../store'
-import { SET_CHARTDATA, SET_DATA } from './table'
+import { AppDispatch } from './store'
+import { SET_TABLEDATA } from './Entities/Table/table'
+import { SET_CHARTDATA } from './Entities/Chart/chart'
 import axios from 'axios'
+import dayjs from 'dayjs'
 
+import dayOfYear from 'dayjs/plugin/dayOfYear'
+dayjs.extend(dayOfYear)
 
-interface tableThunkProps {
+interface apiThunkProps {
   defaultStartDate: string
   defaultEndDate: string
   userStartDate?: string | null
@@ -20,16 +24,16 @@ interface ThunkAPI {
 }
 
 export const loadTableData = createAsyncThunk(
-  'table/loadTableData',
-  async (thunkProps: tableThunkProps, thunkAPI: ThunkAPI) => {
-    const dispatch = thunkAPI.dispatch
+  'app/loadTableData',
+  async (props: apiThunkProps, api) => {
+    const dispatch = api.dispatch
     try {
       const {
         defaultStartDate,
         defaultEndDate,
         userStartDate,
         userEndDate
-      } = thunkProps
+      } = props
 
       const url = "https://api.nasa.gov/neo/rest/v1/feed"
       const response = await axios.get(url, {
@@ -41,8 +45,8 @@ export const loadTableData = createAsyncThunk(
       })
       const tableData: object[] = []
       const chartData: object[] = []
+      let sortedChartData: object[]
       const modifiedResults: any[] = []
-      // const resultsKeysArray = Object.keys(response.data[""])
       const resultsArray = Object.entries(response.data["near_earth_objects"])
   
       resultsArray.forEach((result: Array<any>) => {
@@ -66,8 +70,14 @@ export const loadTableData = createAsyncThunk(
           close_approach_date: result.close_approach_data[0].close_approach_date_full
         })
       })
-      dispatch(SET_DATA(tableData))
-      dispatch(SET_CHARTDATA(chartData))
+      dispatch(SET_TABLEDATA(tableData))
+
+      sortedChartData = chartData.sort((a: any, b: any) => {
+        const date1 = dayjs(a.date).get('date')
+        const date2 = dayjs(b.date).get('date')
+        return date1 - date2
+      } )
+      dispatch(SET_CHARTDATA(sortedChartData))
     } catch (error) {
       throw error
     }

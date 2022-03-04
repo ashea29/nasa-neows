@@ -1,7 +1,26 @@
-.table-group {
-  transform: translateY(-7%) !important;
+.table-container {
+  margin-top: 1rem;
 }
 
-button {
-  cursor: pointer;
+.grid {
+  height: 400px;
+  width: 600px;
+  border: 1px solid #ccc;
+  margin-top: 1rem;
+
+  @media (max-width: 600px) {
+    & {
+      width: 400px;
+    }
+  }
+}
+
+.cells {
+  font-size: 12px;
+
+  @media (min-width: 600px) {
+    & {
+      font-size: 14px;
+    }
+  }
 }

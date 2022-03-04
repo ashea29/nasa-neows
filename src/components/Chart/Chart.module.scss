@@ -1,0 +1,12 @@
+.chart {
+  margin-top: 2rem;
+  width: 600px;
+  height: 400px;
+  border: 1px solid #ccc;
+
+  @media (max-width: 600px) {
+    & {
+      width: 400px;
+    }
+  }
+}
