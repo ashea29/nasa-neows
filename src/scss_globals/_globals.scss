@@ -16,6 +16,7 @@ $main-font: "Poppins", sans-serif;
 
 body {
   font-family: $main-font;
+  background-color: #333e42;
 }
 
 
@@ -32,4 +33,9 @@ body {
 @mixin set-background-color($color) {
   background-color: $color;
   color: set-text-color($color)
+}
+
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
 }

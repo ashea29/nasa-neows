@@ -1,38 +1,26 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useCallback, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 
-import { useAppSelector, useAppDispatch } from '../../state/hooks';
+import { useAppSelector } from '../../state/hooks';
 import { 
-  SET_USD, 
-  SET_UED, 
   selectTableData, 
-  selectTableDataLoading, 
-  selectUserStartDate,
-  selectDefaultStartDate, 
-  selectUserEndDate,
-  selectDefaultEndDate,
-  selectDateParams
+  selectTableDataLoading,
 } from '../../state/Entities/Table/table'
-import { loadTableData } from '../../state/Entities/Table/tableThunks'
-
-import 'ag-grid-community/dist/styles/ag-grid.min.css'
-import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.min.css'
 
 import {
   updateRowHeight, 
   autoSizeAllColumns 
 } from './Table.utilities'
 
+import 'ag-grid-community/dist/styles/ag-grid.min.css'
+import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.min.css'
 import styles from './Table.module.scss'
-import Form from '../Form/Form';
+import Spinner from '../Spinner/Spinner';
 
 
 const Table: React.FC = () => {
-  const dispatch = useAppDispatch()
   const tableData = useAppSelector(selectTableData)
   const isLoading = useAppSelector(selectTableDataLoading)
-  const dateParams = useAppSelector(selectDateParams)
-  console.log(dateParams)
 
   const gridRef: any = useRef(null);
 
@@ -55,10 +43,11 @@ const Table: React.FC = () => {
     return {
       resizable: true,
       sortable: true,
-      filter: true
+      filter: true,
+      cellClass: styles.cells
     };
   }, []);
-
+ 
   const getRowHeight = useCallback(() => {
     return currentRowHeight;
   }, []);
@@ -83,34 +72,26 @@ const Table: React.FC = () => {
     [updateRowHeight]
   )
 
-  useEffect(() => {
-    dispatch(loadTableData(dateParams))
-  }, []);
-
-  const handleClick = (e: any) => {
-    console.log(gridRef.current.api)
-  }
-
   return (
-      <section className="centered-section">
-        <div className={`${styles["table-group"]}`}>
-          <Form />
-          <div className="ag-theme-alpine-dark" style={{height: 400, width: 600}}>
-              <button onClick={handleClick}>Load Data</button>
-              <AgGridReact
-                ref={gridRef}
-                rowData={tableData}
-                columnDefs={columnDefs}
-                defaultColDef={defaultColDef}
-                getRowHeight={getRowHeight}
-                onGridReady={onGridReady}
-                onFirstDataRendered={onFirstDataRendered}
-                onGridSizeChanged={onGridSizeChanged}
-                rowSelection="multiple">
-              </AgGridReact>
-          </div>
-        </div>
-      </section>
+    <article className={styles["table-container"]}>
+      <div className={`ag-theme-alpine-dark ${styles.grid}`}>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <AgGridReact
+            ref={gridRef}
+            rowData={tableData}
+            columnDefs={columnDefs}
+            defaultColDef={defaultColDef}
+            getRowHeight={getRowHeight}
+            onGridReady={onGridReady}
+            onFirstDataRendered={onFirstDataRendered}
+            onGridSizeChanged={onGridSizeChanged}
+            rowSelection="multiple">
+          </AgGridReact>
+        )}
+      </div>
+    </article>
  );
 }
 

@@ -1,42 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { AgChartsReact } from 'ag-charts-react'
-import { selectChartData } from '../../state/Entities/Table/table'
+import { selectChartData, selectChartDataLoading } from '../../state/Entities/Chart/chart'
+import { options } from './Chart.utilities'
 import { useAppSelector } from '../../state/hooks'
 
+import styles from './Chart.module.scss'
+import Spinner from '../Spinner/Spinner'
 
-const Chart = () => {
+
+const Chart: React.FC = () => {
   const chartData = useAppSelector(selectChartData)
+  const isLoading = useAppSelector(selectChartDataLoading)
+  const [chartOptions, setChartOptions] = useState(options)
 
-  const [chartOptions] = useState({
-    autoSize: true,
-    theme: 'ag-default-dark',
-    title: {
-      text: 'Near Earth Objects (by date)',
-    },
-    data: chartData,
-    series: [
-      {
+  useEffect(() => {
+    if (chartData.length) {
+      setChartOptions((prevOptions) => {
+        return {...prevOptions, data: chartData}
+      })
+    }
+  }, [chartData])
 
-        xKey: 'date',
-        yKey: 'numberOfObjects',
-        yName: 'Number of NEOs',
-        stroke: '#0067b4',
-        marker: {
-          fill: '#0067b4',
-          stroke: '#0067b4' 
-        }
-      },
-    ],
-    legend: {
-      position: 'bottom',
-    },
-  })
-
-  console.log(chartData)
   return (
-    <section className="centered-section">
-      <AgChartsReact options={chartOptions} />
-    </section>
+    isLoading ? (
+      <Spinner />
+    ) : (
+      <article className={styles.chart}>
+        <AgChartsReact options={chartOptions} />
+      </article>
+    )
   )
 }
 
