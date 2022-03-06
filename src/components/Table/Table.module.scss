@@ -1,5 +1,17 @@
 .table-container {
   margin-top: 1rem;
+
+  @media (max-width: 710px) {
+    & {
+      width: 400px;
+    }
+  }
+
+  @media (max-width: 450px) {
+    & {
+      width: 370px;
+    }
+  }
 }
 
 .grid {
@@ -8,19 +20,25 @@
   border: 1px solid #ccc;
   margin-top: 1rem;
 
-  @media (max-width: 600px) {
+  @media (max-width: 710px) {
     & {
       width: 400px;
+    }
+  }
+
+  @media (max-width: 450px) {
+    & {
+      width: 370px;
     }
   }
 }
 
 .cells {
-  font-size: 12px;
+  font-size: 14px;
 
-  @media (min-width: 600px) {
+  @media (max-width: 710px) {
     & {
-      font-size: 14px;
+      font-size: 12px;
     }
   }
 }

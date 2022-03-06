@@ -1,5 +1,5 @@
 .form-container {
-  margin: 3.5rem 0 3rem 0;
+  margin: 3.5rem auto 3rem auto;
   padding: 1.5rem;
   background-color: #2a2e31;
   border: 1px solid #ccc;
@@ -8,9 +8,9 @@
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: 600px) {
+  @media (max-width: 710px) {
     & {
-
+      width: 90%;
       margin-top: 4.5rem;
     }
   }

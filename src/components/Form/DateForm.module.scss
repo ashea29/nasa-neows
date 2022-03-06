@@ -8,7 +8,7 @@
   flex-wrap: wrap;
   width: 100%;
 
-  @media (max-width: 600px) {
+  @media (max-width: 710px) {
     & {
       flex-direction: column;
       align-items: center !important;
@@ -18,6 +18,12 @@
 
 .form-group {
   gap: 1rem;
+
+  @media (max-width: 710px) {
+    & {
+      width: 90%;
+    }
+  }
 }
 
 .submit-button {
@@ -46,4 +52,10 @@ input[type="date"] {
   color: #fff;
   padding: 0.65rem 0.5rem;
   margin-top: 0.2rem;
+
+  @media (max-width: 710px) {
+    & {
+      width: 100%;
+    }
+  }
 }

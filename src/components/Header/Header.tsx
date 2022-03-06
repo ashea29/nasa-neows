@@ -5,7 +5,8 @@ import styles from './Header.module.scss'
 const Header: React.FC = () => {
   return (
     <div className={styles.header}>
-      <h1>NASA - Near Earth Object Tracker</h1>
+      <h1>NASA</h1>
+      <h3>Near Earth Objects</h3>
     </div>
   )
 }
