@@ -17,7 +17,7 @@
     "ag-grid-community": "^27.0.1",
     "ag-grid-react": "^27.0.1",
     "axios": "^0.26.0",
-    "dayjs": "^1.10.8",
+    "dayjs": "^1.11.7",
     "dotenv": "^16.0.0",
     "formik": "^2.2.9",
     "react": "^17.0.2",
