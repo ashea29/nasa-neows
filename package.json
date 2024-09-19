@@ -14,7 +14,7 @@
     "@types/react-redux": "^7.1.7",
     "ag-charts-community": "^5.0.0",
     "ag-charts-react": "^5.0.0",
-    "ag-grid-community": "^27.0.1",
+    "ag-grid-community": "^31.3.4",
     "ag-grid-react": "^27.0.1",
     "axios": "^0.26.0",
     "dayjs": "^1.10.8",
