@@ -26,7 +26,7 @@
     "react-scripts": "5.0.0",
     "react-tabs": "^4.0.1",
     "typescript": "~4.1.5",
-    "validator": "^13.7.0",
+    "validator": "^13.15.20",
     "yup": "^0.32.11"
   },
   "devDependencies": {
